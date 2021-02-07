@@ -1,0 +1,184 @@
+{% load  static %}
+{% static "images" as baseUrl %}
+{%load cart%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="{% static 'images/LOGO1.png'%}">
+    <title>CART</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <meta http-equiv="Content-Type" content="{% static 'text/html'%}; charset=utf-8" />
+   <script src="{% static 'js/jquery.js' %}"></script> 
+	<script src="{% static 'js/jquery.glide.js' %}"></script>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+      <link rel="stylesheet" href="{% static 'css/animate.css'%}">
+    <script type="{% static 'text/javascript'%}" src="{% static 'js/MyJQ.js'%}"></script>
+    <script src="{% static 'js/jquery.localScroll.min.js'%}" type="{% static 'text/javascript'%}"></script>
+	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+    <!-- scroll function -->
+<script type="text/javascript">
+$(document).ready(function() {
+   $('#navigations').localScroll({duration:800});
+});
+</script>
+
+
+<script src="{% static 'js/wow.min.js'%}"></script>
+<script>
+new WOW().init();
+</script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+  <div class="headerwrapper">
+	<div id="header" class="container pd-0">
+		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
+        <nav>
+            <ul id="navigations">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/#bestdishes">MENU</a></li>
+                <li><a href="/#contactus">CONTACT</a></li>
+                {% if request.session.Customer %}
+                    <li> Hello, {{request.session.fname}} </li>
+                     <li> <a href="/orders">Orders</a></li>
+                    <li> <a href="/accounts/logout">LOG OUT</a></li>
+                {% else %}
+                     <li> <a href="/orders">Orders</a></li>
+                    <li> <a href="/accounts/register">SIGN UP</a></li>
+                    <li><a href="/accounts/login">LOG IN</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+      </div> <!--end of header-->
+</div> <!-- end of headerwrapper-->
+   {%if error%}
+  <div class = "alert alert-danger" role = "alert">
+    {{error}}
+    </div> 
+    {%else%}
+    <div class = "alert alert-success" role = "alert">
+    <h3>Minimum order limit of Rs 300.</h3> 
+    <h3>Delivery is free for order above Rs 2000.</h3>
+    </div>
+  {%endif%}
+    <div class = "container pd-0">
+        <div class = "border border-dark round p-4 m-4">
+            <p class = "display-4 pl-4 ml-4"> Your Cart </p>
+            <hr>
+            <table class="table table-warning">
+                <thead>
+                    <tr>
+                        <th>Sno.</th>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Sub-Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for dish in dishes%}
+                    <tr>
+                        <td >{{forloop.counter}}</td>
+                        <td ><img width = "100" height = "100" class = "rounded circle" src = {{dish.img.url}} </td>
+                        <td>{{dish.name}}</td>
+                        <td>{{dish.desc}}</td>
+                        <td>Rs {{dish.price}}</td>
+                        <td><form = "action" method = "POST">
+                             {% csrf_token %}
+                              <input hidden type = "text"  name = "remove" value = "True">
+                              <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
+                             <input href = "#bestdishes" type = "submit" value = "-">
+                             </form>
+                             <div>{{dish|cart_quantity:request.session.cart}} </div>
+                            <form = "action" method = "POST">
+                             {% csrf_token %}
+                             <input hidden type = "text"  name = "remove" value = "False">
+                             <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
+                             <input  href = "#bestdishes" type = "submit" value = "+">
+                             </form></td>
+                        <td>Rs {{dish|dish_total:request.session.cart}}</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+                <tfoot>
+                     <tr>
+                        <th colspan = '5'></th>
+                        <th >CART TOTAL</th>
+                        <th>Rs {{dishes|cart_total:request.session.cart}}</th>
+                    </tr>
+                    <tr>
+                        <th colspan = '5'></th>
+                        <th >DELIVERY CHARGES</th>
+                        <th>Rs {{dishes|delivery:request.session.cart}}</th>
+                    </tr>
+                    <tr>
+                        <th colspan = '5'></th>
+                        <th >TOTAL</th>
+                        <th>Rs {{dishes|total:request.session.cart}}</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            {%if error%}
+            <div class = "m-3 p-3">
+                <a href = '/cart' class = 'btn btn-danger border border-dark rounded col-lg-3 float-right'> Check out </a>
+            </div>
+             {%else%}   
+            <div class = "m-3 p-3">
+                <a href = '#' data-toggle="modal" data-target="#exampleModal" class = 'btn btn-danger border border-dark rounded col-lg-3 float-right'> Check out </a>
+            </div>
+             {%endif%}
+        </div>
+    </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Check Out Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class = "m-2 p-3">
+            <form action = "/check-out" method = "POST">
+                {% csrf_token %}
+                <div class = "form-group">
+                    <label for = "">Address</label>
+                    <input type = "text" name= "address"  class = "form-control" placeholder = "Enter your delivery Address" value = {{Customer.addr}} aria-describedby = "helpId" required>
+                    </div>
+                <div class = "form-group">
+                    <label for = "">Phone</label>
+                    <input type = "text" name= "phoneno"  class = "form-control" placeholder = "Enter Contact Number"  value = {{Customer.phoneno}} aria-describedby = "helpId" required>
+                    </div>
+                <div class = <div class="alert alert-warning" role="alert">
+                  <strong>Current Payment method is Cash On Delivery. In future we will also offer Jazzcash and Easypaisa transaction facility</strong>
+                </div>
+
+                    <input type = "submit" class = "btn float-right btn-outline-danger col-lg-6" value = "Check Out">
+                    </form>
+                </div>
+             </div>
+      
+    </div>
+  </div>
+</div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

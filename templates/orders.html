@@ -1,0 +1,118 @@
+{% load  static %}
+{% static "images" as baseUrl %}
+{%load cart%}
+{%load customfilters%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="{% static 'images/LOGO1.png'%}">
+    <title>CART</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <meta http-equiv="Content-Type" content="{% static 'text/html'%}; charset=utf-8" />
+   <script src="{% static 'js/jquery.js' %}"></script> 
+	<script src="{% static 'js/jquery.glide.js' %}"></script>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+      <link rel="stylesheet" href="{% static 'css/animate.css'%}">
+    <script type="{% static 'text/javascript'%}" src="{% static 'js/MyJQ.js'%}"></script>
+    <script src="{% static 'js/jquery.localScroll.min.js'%}" type="{% static 'text/javascript'%}"></script>
+	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+    <!-- scroll function -->
+<script type="text/javascript">
+$(document).ready(function() {
+   $('#navigations').localScroll({duration:800});
+});
+</script>
+
+
+<script src="{% static 'js/wow.min.js'%}"></script>
+<script>
+new WOW().init();
+</script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+  <div class="headerwrapper">
+	<div id="header" class="container pd-0">
+		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
+        <nav>
+            <ul id="navigations">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/#bestdishes">MENU</a></li>
+                <li><a href="/#contactus">CONTACT</a></li>
+                <li> <a href="/cart">CART 
+                <span class="badge badge-danger">{{request.session.cart.keys|length}}</span>
+                {% if request.session.Customer %}
+                    <li> Hello, {{request.session.fname}} </li>
+                   <li> <a href="/accounts/logout">LOG OUT</a></li>
+                {% else %}
+                    <li> <a href="/accounts/register">SIGN UP</a></li>
+                    <li><a href="/accounts/login">LOG IN</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+      </div> <!--end of header-->
+</div> <!-- end of headerwrapper-->
+
+    <div class = "container pd-0">
+        <div class = "border border-dark round p-4 m-4">
+            <p class = "display-4 pl-4 ml-4"> Your Orders </p>
+            <hr>
+            <table class="table table-warning">
+                <thead>
+                    <tr>
+                        <th>Sno.</th>
+                        <th>Date</th>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Payment Status</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for order in orders%}
+                    <tr>
+                        <td >{{forloop.counter}}</td>
+                        <td >{{order.date}}</td>
+                        <td ><img width = "100" height = "100" class = "rounded circle" src = {{order.Dish.img.url}} </td>
+                        <td>{{order.Dish.name}}</td>
+                        <td>Rs {{order.price}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>Rs {{order.price|multiply:order.quantity}}</td>
+                        {%if order.payment_status %}
+                        <td><small class = "badge badge-success"> Recieved</td>
+                        {%else%}
+                        <td><small class = "badge badge-warning"> Pending</td>
+                        {%endif%}
+                        {%if order.completed and order.payment_status %}
+                        <td><small class = "badge badge-success"> Delivered</td>
+                        {%else%}
+                        <td><small class = "badge badge-warning"> Pending</td>
+                        {%endif%}
+                    </tr>
+                    {%endfor%}
+                </tbody>
+                
+            </table>
+
+            
+        </div>
+    </div>
+
+
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

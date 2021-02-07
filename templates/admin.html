@@ -1,0 +1,115 @@
+{% load  static %}
+{% static "images" as baseUrl %}
+{%load cart%}
+{%load customfilters%}
+<!DOCTYPE html> 
+<!--
+    Free  Template by Mohamed Sobhy
+    https://www.facebook.com/Mido.HHH
+-->
+<html lang="en">
+<head>
+<style>
+.container {
+  padding: 0px;
+}
+</style>
+<link rel="icon" type="image/png" href="{% static 'images/LOGO1.png'%}">
+	<title>Frozery</title>
+    
+    <meta http-equiv="Content-Type" content="{% static 'text/html'%}; charset=utf-8" />
+   <script src="{% static 'js/jquery.js' %}"></script> 
+	<script src="{% static 'js/jquery.glide.js' %}"></script>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+      <link rel="stylesheet" href="{% static 'css/animate.css'%}">
+    <script type="{% static 'text/javascript'%}" src="{% static 'js/MyJQ.js'%}"></script>
+    <script src="{% static 'js/jquery.localScroll.min.js'%}" type="{% static 'text/javascript'%}"></script>
+	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+
+<!-- scroll function -->
+<script type="text/javascript">
+$(document).ready(function() {
+   $('#navigations').localScroll({duration:800});
+});
+</script>
+
+
+<script src="{% static 'js/wow.min.js'%}"></script>
+<script>
+new WOW().init();
+</script>
+
+ <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<!--============ Navigation ============-->
+
+<div class="headerwrapper">
+	<div id="header" class="container">
+		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
+        <nav>
+            <ul id="navigations">
+              <li> <a href="/">LOG OUT</a></li>
+            </ul>
+        </nav>
+      </div> <!--end of header-->
+</div> <!-- end of headerwrapper-->
+
+</div> <!-- end of headerwrapper-->
+
+    <div class = "container pd-0">
+        <div class = "border border-dark round p-4 m-4">
+            <p class = "display-4 pl-4 ml-4"> Orders </p>
+            <hr>
+            <table class="table table-warning">
+                <thead>
+                    <tr>
+                        <th>Sno.</th>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Payment Status</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for order in orders%}
+                    <tr>
+                        <td >{{forloop.counter}}</td>
+                        <td >{{order.date}}</td>
+                        <td >{{order.Customer.first_name}} {{order.Customer.Last_name}}</td>
+                        <td>{{order.Dish.name}}</td>
+                        <td>Rs {{order.price}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>Rs {{order.price|multiply:order.quantity}}</td>
+                        {%if order.payment_status %}
+                        <td><small class = "badge badge-success"> Recieved</td>
+                        {%else%}
+                        <td><form = "action" >
+                    
+                             <input hidden type = "text"  name = "payment" value = "{{order.id}}">
+                             <input  href = "/admin" type = "submit" value = "Pending"> </form></td>
+                        {%endif%}
+                        {%if order.completed and order.payment_status %}
+                        <td><small class = "badge badge-success"> Delivered</td>
+                        {%else%}
+                        <td><form = "action" >
+                             <input hidden type = "text"  name = "Order" value = "{{order.id}}">
+                             <input  href = "/admin" type = "submit"  value = "Pending"> </form></td>
+                        {%endif%}
+                    </tr>
+                    {%endfor%}
+                </tbody>
+                
+            </table>
+
+            
+        </div>
+    </div>
