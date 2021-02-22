@@ -10,15 +10,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta http-equiv="Content-Type" content="{% static 'text/html'%}; charset=utf-8" />
-   <script src="{% static 'js/jquery.js' %}"></script> 
+   <script src="{% static 'js/jquery.js' %}"></script>
 	<script src="{% static 'js/jquery.glide.js' %}"></script>
-    
+
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
       <link rel="stylesheet" href="{% static 'css/animate.css'%}">
     <script type="{% static 'text/javascript'%}" src="{% static 'js/MyJQ.js'%}"></script>
     <script src="{% static 'js/jquery.localScroll.min.js'%}" type="{% static 'text/javascript'%}"></script>
-	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script> 
-    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script>
     <!-- scroll function -->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -37,7 +37,7 @@ new WOW().init();
   </head>
   <body>
   <div class="headerwrapper">
-	<div id="header" class="container pd-0">
+	<div id="header" >
 		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
         <nav>
             <ul id="navigations">
@@ -60,10 +60,10 @@ new WOW().init();
    {%if error%}
   <div class = "alert alert-danger" role = "alert">
     {{error}}
-    </div> 
+    </div>
     {%else%}
     <div class = "alert alert-success" role = "alert">
-    <h3>Minimum order limit of Rs 300.</h3> 
+    <h3>Minimum order limit of Rs 300.</h3>
     <h3>Delivery is free for order above Rs 2000.</h3>
     </div>
   {%endif%}
@@ -95,14 +95,14 @@ new WOW().init();
                              {% csrf_token %}
                               <input hidden type = "text"  name = "remove" value = "True">
                               <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
-                             <input href = "#bestdishes" type = "submit" value = "-">
+                             <input href = "#bestdishes" type = "submit" value = "-" class = "btn btn-block btn-danger">
                              </form>
-                             <div>{{dish|cart_quantity:request.session.cart}} </div>
+                             <div class ="text-center col">{{dish|cart_quantity:request.session.cart}} </div> 
                             <form = "action" method = "POST">
                              {% csrf_token %}
                              <input hidden type = "text"  name = "remove" value = "False">
                              <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
-                             <input  href = "#bestdishes" type = "submit" value = "+">
+                             <input  href = "#bestdishes" type = "submit" value = "+" class = "btn btn-block btn-danger">
                              </form></td>
                         <td>Rs {{dish|dish_total:request.session.cart}}</td>
                     </tr>
@@ -131,7 +131,7 @@ new WOW().init();
             <div class = "m-3 p-3">
                 <a href = '/cart' class = 'btn btn-danger border border-dark rounded col-lg-3 float-right'> Check out </a>
             </div>
-             {%else%}   
+             {%else%}
             <div class = "m-3 p-3">
                 <a href = '#' data-toggle="modal" data-target="#exampleModal" class = 'btn btn-danger border border-dark rounded col-lg-3 float-right'> Check out </a>
             </div>
@@ -170,11 +170,11 @@ new WOW().init();
                     </form>
                 </div>
              </div>
-      
+
     </div>
   </div>
 </div>
-      
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

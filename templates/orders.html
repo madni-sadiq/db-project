@@ -11,15 +11,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta http-equiv="Content-Type" content="{% static 'text/html'%}; charset=utf-8" />
-   <script src="{% static 'js/jquery.js' %}"></script> 
+   <script src="{% static 'js/jquery.js' %}"></script>
 	<script src="{% static 'js/jquery.glide.js' %}"></script>
-    
+
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
       <link rel="stylesheet" href="{% static 'css/animate.css'%}">
     <script type="{% static 'text/javascript'%}" src="{% static 'js/MyJQ.js'%}"></script>
     <script src="{% static 'js/jquery.localScroll.min.js'%}" type="{% static 'text/javascript'%}"></script>
-	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script> 
-    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script>
     <!-- scroll function -->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -38,14 +38,14 @@ new WOW().init();
   </head>
   <body>
   <div class="headerwrapper">
-	<div id="header" class="container pd-0">
+	<div id="header" >
 		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
         <nav>
             <ul id="navigations">
                 <li><a href="/">HOME</a></li>
                 <li><a href="/#bestdishes">MENU</a></li>
                 <li><a href="/#contactus">CONTACT</a></li>
-                <li> <a href="/cart">CART 
+                <li> <a href="/cart">CART
                 <span class="badge badge-danger">{{request.session.cart.keys|length}}</span>
                 {% if request.session.Customer %}
                     <li> Hello, {{request.session.fname}} </li>
@@ -100,15 +100,15 @@ new WOW().init();
                     </tr>
                     {%endfor%}
                 </tbody>
-                
+
             </table>
 
-            
+
         </div>
     </div>
 
 
-      
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

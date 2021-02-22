@@ -6,15 +6,15 @@
 <link rel="icon" type="image/png" href="{% static 'images/LOGO1.png'%}">
 <title>Sign up</title>
 <meta http-equiv="Content-Type" content="{% static 'text/html'%}; charset=utf-8" />
-   <script src="{% static 'js/jquery.js' %}"></script> 
+   <script src="{% static 'js/jquery.js' %}"></script>
 	<script src="{% static 'js/jquery.glide.js' %}"></script>
-    
+
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
       <link rel="stylesheet" href="{% static 'css/animate.css'%}">
     <script type="{% static 'text/javascript'%}" src="{% static 'js/MyJQ.js'%}"></script>
     <script src="{% static 'js/jquery.localScroll.min.js'%}" type="{% static 'text/javascript'%}"></script>
-	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script> 
-    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script>
 
 <!-- scroll function -->
 <script type="text/javascript">
@@ -112,7 +112,7 @@ button:hover {
 <!--============ Navigation ============-->
 
 <div class="headerwrapper">
-	<div id="header" class="container">
+	<div id="header" >
 		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
         <nav>
             <ul id="navigations">
@@ -147,18 +147,18 @@ button:hover {
 
     <label for="Address"><b>Address</b></label>
     <input type="text" value = "{{data.address}}" placeholder="Enter Address" name="address" >
-    
+
     <label for="email"><b>Email</b></label>
     <input  type="email" value = "{{data.email}}" placeholder="Enter Email (example@company.com)" name="email" >
-    
+
     <label for="psw"><b>Password</b></label>
     <input  type="password" placeholder="Enter Password (minimum length = 8)" name="psw" >
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" >
-    
-   
-    
+
+
+
     <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
     <div class="clearfix">

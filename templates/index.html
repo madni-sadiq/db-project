@@ -1,7 +1,7 @@
 {% load  static %}
 {% static "images" as baseUrl %}
 {%load cart%}
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!--
     Free  Template by Mohamed Sobhy
     https://www.facebook.com/Mido.HHH
@@ -11,21 +11,22 @@
 <style>
 .container {
   padding: 0px;
+  width:100%;
 }
 </style>
 <link rel="icon" type="image/png" href="{% static 'images/LOGO1.png'%}">
 	<title>Frozery</title>
-    
+
     <meta http-equiv="Content-Type" content="{% static 'text/html'%}; charset=utf-8" />
-   <script src="{% static 'js/jquery.js' %}"></script> 
+   <script src="{% static 'js/jquery.js' %}"></script>
 	<script src="{% static 'js/jquery.glide.js' %}"></script>
-    
+
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
       <link rel="stylesheet" href="{% static 'css/animate.css'%}">
     <script type="{% static 'text/javascript'%}" src="{% static 'js/MyJQ.js'%}"></script>
     <script src="{% static 'js/jquery.localScroll.min.js'%}" type="{% static 'text/javascript'%}"></script>
-	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script> 
-    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script> 
+	<script src="{% static 'js/jquery.scrollTo.min.js'%}" type="{% static 'text/javascript'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}" type="{% static 'text/javascript'%}"></script>
 
 <!-- scroll function -->
 <script type="text/javascript">
@@ -48,16 +49,16 @@ new WOW().init();
 <!--============ Navigation ============-->
 
 <div class="headerwrapper">
-	<div id="header" class="container">
+	<div id="header" >
 		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
         <nav>
             <ul id="navigations">
                 <li><a href="/">HOME</a></li>
                 <li><a href="/#bestdishes">MENU</a></li>
-                <li><a href="/#contactus">CONTACT</a></li>
-                <li> <a href="/cart">CART 
+                <!--<li><a href="/#contactus">CONTACT</a></li>-->
+                <li> <a href="/cart">CART
                 <span class="badge badge-danger">{{request.session.cart.keys|length}}</span>
-                
+
                 <li> <a href="/orders">ORDERS</a></li>
                 {% if request.session.Customer %}
                     <li> Hello, {{request.session.fname}} </li>
@@ -77,36 +78,36 @@ new WOW().init();
 
 
 <div class="sliderwrapper">
-      <div id="slider" class="container">
+      <div id="slider" >
            <div class="slider">
       			<ul class="slides">
     		 	 	  <li class="slide">
                       	<h5 class="wow fadeInDown" data-wow-delay="0.8s">What is Frozery? </h5>
                       	<p class="wow fadeInUp" data-wow-delay="0.8s">Frozery is a home chef based start up that aims at
-                          providing its customers with best frozen food in the town. Our Menu includes frozen delicacies like chicken nuggets, 
-                          chicken cheese nuggets, chicken wings, chicken popcorns, shami kebabs, Hot wings, Burger Patties, Chicken donuts, 
+                          providing its customers with best frozen food in the town. Our Menu includes frozen delicacies like chicken nuggets,
+                          chicken cheese nuggets, chicken wings, chicken popcorns, shami kebabs, Hot wings, Burger Patties, Chicken donuts,
                           Mac n'Chic Box Patties and more to come. So what are you waiting for? Order now at 03124778034.
                          </p>
-                      <img src="{% static 'images/Nugget.png'%}" width="317" height="256" class="wow fadeInRight" 
-                      data-wow-delay="0.8s" alt="slide1img"> 
+                      <!--<img src="{% static 'images/Nugget.png'%}" width="256" height="256" class="wow fadeInRight"-->
+                      <!--data-wow-delay="0.8s" alt="slide1img">-->
                       </li>
       			 	  <li class="slide">
                       	<h5 class="wow fadeInDown" data-wow-delay="0.8s">Our Motive </h5>
                       	<p class="wow fadeInUp" data-wow-delay="0.8s">Our Motive is to provide our dear Lahoris with hygienic and scrumptious
-                            snacks at their doorstep at the lowest cost. We choose fresh and fine material to make our products for authentic 
+                            snacks at their doorstep at the lowest cost. We choose fresh and fine material to make our products for authentic
                             irrestible taste in every bite  </p>
-                      <img src="{% static 'images/Nugget.png'%}" width="317" height="256" class="wow fadeInRight" 
-                      data-wow-delay="0.8s" alt="slideimg2"> 
+                      <!--<img src="{% static 'images/Nugget.png'%}" width="256" height="256" class="wow fadeInRight"-->
+                      <!--data-wow-delay="0.8s" alt="slideimg2">-->
                       </li>
      			 	  <li class="slide">
                       	<h5 class="wow fadeInDown" data-wow-delay="0.8s">Why Choose Frozery? </h5>
-                      	<p class="wow fadeInUp" data-wow-delay="0.8s">We prepare fresh snack with every order so as to provide you with the 
+                      	<p class="wow fadeInUp" data-wow-delay="0.8s">We prepare fresh snack with every order so as to provide you with the
                             most tender and succulent snack with every cup of tea during your evenings. Our aim is winning our buyers' hearts  </p>
-                      <img src="{% static 'images/Nugget.png'%}" width="317" height="256" class="wow fadeInRight" 
-                      data-wow-delay="0.8s" alt="slideimg2"> 
+                      <!--<img src="{% static 'images/Nugget.png'%}" width="256" height="256" class="wow fadeInRight"-->
+                      <!--data-wow-delay="0.8s" alt="slideimg2">-->
                       </li>
         		  </ul>
-            </div>  
+            </div>
       </div> <!-- End of Slider-->
 </div> <!-- end of sliderwrapper-->
 
@@ -117,25 +118,68 @@ new WOW().init();
 
 
 <div class="bestdisheswrapper">
-    <div id="bestdishes" class="container">
-       
+    <div id="bestdishes" >
+
 		 <h2 class="wow fadeInUp" data-wow-delay="0.3s">BEST DISHES</h2>
-      
-      <div>
+
+      <div class="container-fluid">
+        <div class="row mx-auto">
+              {% for dish in dishes %}
+                <div class="card mx-auto bg-warning mb-3" id = "{{dish.id}}" style="width: 18rem;">
+                <img class="card-img-top" src="{{dish.img.url}}" width="200" height="200" alt="Card image cap">
+                <div class="card-body">
+                 <h5 class="card-title">{{dish.name}}</h5>
+                 <h5 class="card-title"> Rs {{dish.price}}</h5>
+                  <p class="card-text">{{dish.desc}}</p>
                 
-      		    <ul class="slides">
-                {% for dish in dishes %}
-          	 	 {% comment %} <li class="slide"> {% endcomment %}
+                  <div class = "card-footer bg-transparent row">
                     
-                    <div class="item2" id = {{dish.id}}>
+                      <form action = "/#{{dish.id}}" method = "POST" class = "btn-block">
+                            {% csrf_token %}
+                            {% if dish|is_in_cart:request.session.cart %}
+                            <div style = "color:black" style = "font-size:10px">
+                            <form action = "/#{{dish.id}}" method = "POST" >
+                             {% csrf_token %}
+                              <input hidden type = "text"  name = "remove" value = "True">
+                              <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
+                             <input href = "#bestdishes" type = "submit" value = "-" class = "btn btn-block btn-danger">
+                             </form>
+                             <div class ="text-center col">{{dish|cart_quantity:request.session.cart}} </div>
+                            <form action = "/#{{dish.id}}" method = "POST" >
+                             {% csrf_token %}
+                             <input hidden type = "text"  name = "remove" value = "False">
+                             <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
+                             <input  href = "#bestdishes" type = "submit" value = "+" class = "btn btn-block btn-danger">
+                             </form>
+                            </div>
+                            {%else%}
+                            <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
+                            <input href = "#bestdishes" type = "submit"  value = "Add To Cart" class = "float-right btn btn-block btn-danger">
+                            {%endif%}
+                            </form>
+
+                      
+                        </div>
+                      </div>
+                          </div>
+                      {% endfor %}  
+                     </div>
+                  
+      
+      
+      </div>
+              
+          	 	 {% comment %} <li class="slide"> {% endcomment %}
+
+                    {% comment %} <div class="item2" id = "{{dish.id}}">
                           <img src="{{dish.img.url}}" width="200" height="200" alt="sliderimg" class="wow flipInX"
-                           data-wow-delay=".8s"> 
+                           data-wow-delay=".8s">
                           <h3>{{dish.name}}</h3>
                           <p style = "color:white" style = "font-size:10px"> {{dish.desc}}</small></p>
-                          <p  style = "color:white"> Rs {{dish.price}}</p>
-                          
-                        
-                        <div>  
+                          <p  style = "color:white"> Rs {{dish.price}}</p> {% endcomment %}
+
+
+                        {% comment %} <div>
                           <form = "action" method = "POST">
                             {% csrf_token %}
                             {% if dish|is_in_cart:request.session.cart %}
@@ -159,16 +203,12 @@ new WOW().init();
                             <input href = "#bestdishes" type = "submit"  value = "Add To Cart" >
                             {%endif%}
                             </form>
-                          </div>  
+                          </div> {% endcomment %}
 
 
-                      </div> <!-- end of item-->
-                      
-              {% endfor %}     
-        </ul>
-        
+                      {% comment %} </div> <!-- end of item--> {% endcomment %}
       </div> <!-- end of slider-->
-      
+
     </div> <!-- end of besth dishes-->
 </div> <!-- end of bestdishes wrapper-->
 
@@ -180,36 +220,30 @@ new WOW().init();
 
 
 <div class="contactwrapper">
-  <div id="contactus" class="container">
+  <div id="contactus">
         <h3 class="wow fadeInUp" data-wow-delay="0.3s">CONTACT US</h3>
-        <div class="staff">
-       	  <ul class = "fas fa-align-center">
-                  <li><img src="{% static 'images/Fatima Nadeem.jpg'%}" width="163" height="180" class="myimage3 wow fadeIn" data-wow-delay="0.8s"
-                   alt="1">
+
+      <!--end of .staff-->
+        </div>
+    {% comment %} <img src="{% static 'images/pop1.png'%}" width="486" height="137" class="firstpop" alt="pop"> {% endcomment %}
+	<div>
+     <ul class = "fas fa-align-center">
+                  <li><img src="{% static 'images/FatimaNadeem.jpg'%}" width="163" height="180" class="myimage3 wow fadeIn" data-wow-delay="0.8s"
+                   alt="1"></li>
                    <p><b style = "color:red"> Fatima Nadeem</b></p>
                   <p><b style = "color:red"> Owner+Manager+Web designer</b></p>
                   <p><b style = "color:red"> 03084203541</b></p>
-                  </li>
-                  <li><img src="{% static 'images/Madni Sadiq.jpg'%}" width="163" height="180" class="myimage wow fadeIn" title="mido" alt="1"></li> 
+
+                  <li><img src="{% static 'images/MadniSadiq.jpg'%}" width="163" height="180" class="myimage wow fadeIn" title="mido" alt="1"></li>
                   <p><b style = "color:red"> Madni Sadiq</b></p>
                   <p><b style = "color:red"> Web designer</b></p>
                   <p><b style = "color:red"> 03027904011</b></p>
-                  
-            
-             </ul>   
-             
-         </div>   
-      <!--end of .staff-->
-        
-    {% comment %} <img src="{% static 'images/pop1.png'%}" width="486" height="137" class="firstpop" alt="pop"> {% endcomment %}
-    <img src="{% static 'images/popup2.png'%}" width="487" height="137"  class="secondpop" alt="pop">
-    <img src="{% static 'images/popup3.png'%}" width="487" height="137"  class="thirdpop" alt="pop">
-    <img src="{% static 'images/popup4.png'%}" width="487" height="137"  class="fourthpop" alt="pop">  
-    <img src="{% static 'images/popup6.png'%}" width="487" height="137"  class="fifthpop" alt="pop">  
-    <img src="{% static 'images/popup7.png'%}" width="487" height="137"  class="sixthpop" alt="pop">  
-    
-    
-    </div> 
+                   <b> </b>
+
+             </ul>
+
+     </div>
+    </div>
     <!--contactus class-->
 </div> <!-- end of contact wrapper-->
 
@@ -218,48 +252,19 @@ new WOW().init();
 
 
 <div class="footerwrapper">
-    <footer class="container">
-    	<div class="customerreview">
-       		 <h2>Customer Reviews</h2>
-          <div class="review">
-        	<p><strong>&#8220; </strong>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor 
-            aliquet. Aenean 			            sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,
-             nec sagittis sem nibh id elit.
-             Duis sed odio sit amet nibh vulputate  a ornare odio. Sed non  mauris vitae erat consequat  
-            <strong>&#8221;</strong></p>
-             
-             <h4>- JOHN ALVES</h4>
-            
-            
-        	</div> <!-- end of review-->
-             
-              <div class="clearfix"></div>
-              <div class="line"></div>
-              
-          <div class="review">
-        	<p><strong>&#8220; </strong>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor 
-            aliquet. Aenean 			            sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum,
-             nec sagittis sem nibh id elit.
-             Duis sed odio sit amet nibh vulputate  a ornare odio. Sed non  mauris vitae erat consequat  
-            <strong>&#8221;</strong></p>
-             
-             <h4>- CATHREINE JOHNES</h4>
-            
-            
-        	</div> <!-- end of review-->
-                
-        </div>
+    <footer >
+
         <div class="socialize">
-        
+
       <h2>Socialize</h2>
         <div class="socialimgs">
           <a href="https://www.facebook.com/Frozerylahore"><img src="{% static 'images/facebook.png'%}" width="68" height="68" class="facebook"
            alt="fb"></a>
-          <a href="https://api.whatsapp.com/send?phone=923124778034&fbclid=IwAR2Zg0yxnQEj5kyriXEf3UlMtIeGWlV2gmkajBsUCRM_KnA9dRXxy-QhEno"><img src="{% static 'images/wa.png'%}" width="68" height="68" class="message" alt="message"></a> 
+          <a href="https://api.whatsapp.com/send?phone=923124778034&fbclid=IwAR2Zg0yxnQEj5kyriXEf3UlMtIeGWlV2gmkajBsUCRM_KnA9dRXxy-QhEno"><img src="{% static 'images/wa.png'%}" width="68" height="68" class="message" alt="message"></a>
       </div> <!--end of social imgs-->
-      
+
        </div>
-        
+
     </footer> <!-- end of footer-->
 
 </div> <!-- end of footer-->
@@ -267,7 +272,7 @@ new WOW().init();
 
 
 
-	
+
 
 
 
@@ -285,29 +290,29 @@ new WOW().init();
 		autoplay: 7000,
 		animationDuration: 3000,
 		arrows: true,
-		
-		
-	
+
+
+
 		});
-	
+
 </script>
-	
+
     <script type="text/javascript">
     $('.bestdisheswrapper .slider').glide({
 		autoplay: false,
 		animationDuration: 700,
 		arrows: true,
 		navigation:false,
-		
-		
-	
+
+
+
 		});
-	
-	
+
+
 </script>
-	
-   
-   
+
+
+
 
 </body>
 

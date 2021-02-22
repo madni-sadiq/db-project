@@ -53,7 +53,7 @@ new WOW().init();
 		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
         <nav>
             <ul id="navigations">
-            <li> <a href="/stock">STOCK</a></li>
+            <li> <a href="/accounts/admin">ORDERS</a></li>
             <li> <a href="/sales">SALES</a></li>
             <li> <a href="/accounts/logout">LOG OUT</a></li>
             </ul>
@@ -65,46 +65,35 @@ new WOW().init();
 
     <div class = "container pd-0">
         <div class = "border border-dark round p-4 m-4">
-            <p class = "display-4 pl-4 ml-4"> Orders </p>
+            <p class = "display-4 pl-4 ml-4"> Dishes Stocks </p>
             <hr>
             <table class="table table-warning">
                 <thead>
                     <tr>
                         <th>Sno.</th>
-                        <th>Date</th>
-                        <th>Customer</th>
                         <th>Item Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Payment Status</th>
-                        <th>Delivery Status</th>
+                        <th>Stock</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {%for order in orders%}
-                    <tr>
+                    {%for dish in dishes%}
+                    <tr id = "{{dish.id}}">
+                    
                         <td >{{forloop.counter}}</td>
-                        <td >{{order.date}}</td>
-                        <td >{{order.Customer.first_name}} {{order.Customer.Last_name}}</td>
-                        <td>{{order.Dish.name}}</td>
-                        <td>Rs {{order.price}}</td>
-                        <td>{{order.quantity}}</td>
-                        <td>Rs {{order.price|multiply:order.quantity}}</td>
-                        {%if order.payment_status %}
-                        <td><small class = "badge badge-success"> Recieved</td>
-                        {%else%}
-                        <td><form >
-                             <input hidden type = "text"  name = "payment" value = "{{order.id}}">
-                             <input  href = "/admin" type = "submit" value = "Pending" class = "btn btn-small btn-warning"> </form></td>
-                        {%endif%}
-                        {%if order.completed and order.payment_status %}
-                        <td><small class = "badge badge-success"> Delivered</td>
-                        {%else%}
-                        <td><form>
-                             <input hidden type = "text"  name = "Order" value = "{{order.id}}">
-                             <input  href = "/admin" type = "submit"  value = "Pending" class = "btn btn-small btn-warning"> </form></td>
-                        {%endif%}
+                        <td>{{dish.name}}</td>
+                        <td><form = "action" method = "POST">
+                             {% csrf_token %}
+                              <input hidden type = "text"  name = "remove" value = "True">
+                              <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
+                             <input href = "#bestdishes" type = "submit" value = "-" class = "btn btn-block btn-danger">
+                             </form>
+                             <div class ="text-center col">{{dish.stock}} </div> 
+                            <form = "action" method = "POST">
+                             {% csrf_token %}
+                             <input hidden type = "text"  name = "remove" value = "False">
+                             <input hidden type = "text"  name = "dish" value = "{{dish.id}}">
+                             <input  href = "#bestdishes" type = "submit" value = "+" class = "btn btn-block btn-danger">
+                             </form></td>
                     </tr>
                     {%endfor%}
                 </tbody>
