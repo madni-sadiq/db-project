@@ -50,8 +50,9 @@ def adminlog(request):
         password = request.POST['adminpsw']
         user = auth.authenticate(username = username, password = password)
         orders = order.objects.all().order_by('-date')
-        if user is not None:
+        if (user is not None) and (user.is_superuser):
             auth.login(request, user)
+            request.session['admin'] = user.id
             return render(request, 'admin.html', {'orders':orders})
         else:
             error_message = "Invalid username or password"
@@ -64,7 +65,6 @@ def adminlog(request):
         if payment_status:
             Orders = order.objects.filter(id  = payment_status)
             for Order in Orders:
-                print(Order)
                 Order.payment_status = True
                 Order.save()
         if order_status:
