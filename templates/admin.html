@@ -53,16 +53,18 @@ new WOW().init();
 		<div class="logo"> <a href="/"><img src="{% static 'images/LOGO1.png'%}" alt="logo" width="120" height="110"></a> </div> <!--end of Logo-->
         <nav>
             <ul id="navigations">
+            {%if request.session.admin%}
             <li> <a href="/stock">STOCK</a></li>
             <li> <a href="/sales">SALES</a></li>
             <li> <a href="/accounts/logout">LOG OUT</a></li>
+            {%endif%}
             </ul>
         </nav>
       </div> <!--end of header-->
 </div> <!-- end of headerwrapper-->
 
 </div> <!-- end of headerwrapper-->
-
+{%if request.session.admin%}
     <div class = "container pd-0">
         <div class = "border border-dark round p-4 m-4">
             <p class = "display-4 pl-4 ml-4"> Orders </p>
@@ -114,3 +116,4 @@ new WOW().init();
             
         </div>
     </div>
+{%endif%}
