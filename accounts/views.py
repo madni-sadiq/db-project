@@ -51,7 +51,6 @@ def adminlog(request):
         user = auth.authenticate(username = username, password = password)
         orders = order.objects.all().order_by('-date')
         if (user is not None) and (user.is_superuser):
-            auth.login(request, user)
             request.session['admin'] = user.id
             return render(request, 'admin.html', {'orders':orders})
         else:
